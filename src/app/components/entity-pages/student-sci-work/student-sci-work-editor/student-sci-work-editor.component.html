@@ -1,0 +1,79 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <div *ngIf="userService.isAdmin()">
+    <mat-form-field>
+      <mat-label>Student group</mat-label>
+      <mat-select [(ngModel)]="studentGroup" [compareWith]="compareStudentGroup" (selectionChange)="getStudentList(true)">
+        <mat-option *ngFor="let group of studentGroupList" [value]="group">
+          {{group.startYear}}-{{group.specialtyField.specialty.faculty.shortName}}-{{group.number}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="studentGroup">
+      <mat-label>Student</mat-label>
+      <mat-select [(ngModel)]="data.entity.student" [compareWith]="compareStudent">
+        <mat-option *ngFor="let student of studentList" [value]="student">
+          {{student.firstName}} {{student.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Faculty</mat-label>
+      <mat-select [(ngModel)]="facultyShortName" (selectionChange)="this.getDepartmentList(true)">
+        <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="facultyShortName">
+      <mat-label>Department</mat-label>
+      <mat-select [(ngModel)]="departmentName" (selectionChange)="getProfessorList()">
+        <mat-option *ngFor="let department of departmentList" [value]="department.name">{{department.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="departmentName">
+      <mat-label>Professor</mat-label>
+      <mat-select [(ngModel)]="data.entity.professor" [compareWith]="compareProfessor">
+        <mat-option *ngFor="let professor of professorList" [value]="professor">
+          {{professor.firstName}} {{professor.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Scientific work type</mat-label>
+      <mat-select [(ngModel)]="data.entity.studentSciWorkType" [compareWith]="compareStudSciWorkType">
+        <mat-option *ngFor="let studSciWorkType of studentSciWorkTypeList"
+                    [value]="studSciWorkType">{{studSciWorkType.type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Topic" type="text" [(ngModel)]="data.entity.topic">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Defense status</mat-label>
+    <mat-select [(ngModel)]="data.entity.defenseStatus">
+      <mat-option>N/A</mat-option>
+      <mat-option *ngFor="let status of defenseStatusList" [value]="status">{{status}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Defense date</mat-label>
+    <input matInput [(ngModel)]="data.entity.defenseDate" [matDatepicker]="endPicker" disabled>
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker disabled="false"></mat-datepicker>
+    <mat-icon matSuffix (click)="clearDate()" *ngIf="data.entity.defenseDate">highlight_off</mat-icon>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

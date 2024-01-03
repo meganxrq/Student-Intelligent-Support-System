@@ -1,0 +1,57 @@
+.picture {
+  text-align: center;
+
+  &__background {
+    background-color: #e2e2e2;
+    height: 300px;
+  }
+
+  &__avatar {
+    display: inline-block;
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: -185px;
+  }
+}
+
+.person-info {
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+
+  &__name {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  &__group {
+
+  }
+}
+
+.card {
+  margin-top: 20px;
+  padding: 5px;
+  background-color: #f8f8f8;
+
+  .control-panel {
+    display: flex;
+    justify-content: space-between;
+
+    &__sections {
+      padding-left: 30px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    &__actions {
+      padding-right: 30px;
+    }
+  }
+}

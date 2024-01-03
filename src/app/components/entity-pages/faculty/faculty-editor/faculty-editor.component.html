@@ -1,0 +1,17 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Full name" [(ngModel)]="data.entity.fullName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Short name" [(ngModel)]="data.entity.shortName" maxlength="100">
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

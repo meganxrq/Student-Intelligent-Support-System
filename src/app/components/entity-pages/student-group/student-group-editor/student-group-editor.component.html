@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Education start year" type="number" [(ngModel)]="data.entity.startYear" min="1999"
+           max="2100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="facultyShortName" (selectionChange)="this.getSpecialtyList(true)">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="facultyShortName">
+    <mat-label>Specialty</mat-label>
+    <mat-select [(ngModel)]="specialtyCode" (selectionChange)="this.getSpecialtyFieldList(true)">
+      <mat-option *ngFor="let specialty of specialtyList" [value]="specialty.code">{{specialty.code}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="specialtyCode">
+    <mat-label>Specialty field</mat-label>
+    <mat-select [(ngModel)]="data.entity.specialtyField.name">
+      <mat-option *ngFor="let specialtyField of specialtyFieldList"
+                  [value]="specialtyField.name">{{specialtyField.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Group №" type="number" [(ngModel)]="data.entity.number" min="1" max="50">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Education form</mat-label>
+    <mat-select [(ngModel)]="data.entity.eduForm.name">
+      <mat-option *ngFor="let eduForm of eduFormList" [value]="eduForm.name">{{eduForm.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

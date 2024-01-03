@@ -1,0 +1,81 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="filter.faculty" (selectionChange)="this.getDepartmentList(true)"
+                [compareWith]="compareFaculty">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="filter.faculty">
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="filter.department" (selectionChange)="getProfessorList()"
+                [compareWith]="compareDepartment">
+      <mat-option *ngFor="let department of departmentList" [value]="department">{{department.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="filter.department">
+    <mat-label>Professor</mat-label>
+    <mat-select [(ngModel)]="filter.professor" [compareWith]="compareProfessor">
+      <mat-option *ngFor="let professor of professorList" [value]="professor">
+        {{professor.firstName}} {{professor.lastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Scientific work type</mat-label>
+    <mat-select [(ngModel)]="filter.professorSciWorkType" [compareWith]="compareProfSciWorkType">
+      <mat-option *ngFor="let profSciWorkType of professorSciWorkTypeList"
+                  [value]="profSciWorkType">{{profSciWorkType.type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Topic" type="text" [(ngModel)]="filter.topic">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Defense status</mat-label>
+    <mat-select [(ngModel)]="filter.defenseStatus">
+      <mat-option>N/A</mat-option>
+      <mat-option *ngFor="let status of defenseStatusList" [value]="status">{{status}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Defense date</mat-label>
+    <input matInput [(ngModel)]="filter.defenseDate" [matDatepicker]="endPicker" disabled>
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker disabled="false"></mat-datepicker>
+    <mat-icon matSuffix (click)="clearDate()" *ngIf="filter.defenseDate">highlight_off</mat-icon>
+  </mat-form-field>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>

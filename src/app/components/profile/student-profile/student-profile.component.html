@@ -1,0 +1,26 @@
+<div class="picture">
+  <div class="picture__background"></div>
+  <div class="picture__avatar"></div>
+</div>
+<div class="person-info">
+  <div class="person-info__name">
+    {{student.firstName}} {{student.lastName}}
+  </div>
+  <div class="person-info__group">
+    {{student.studentGroup.specialtyField.specialty.program}} of {{student.studentGroup.specialtyField.specialty.name}} (Class of {{student.studentGroup.startYear}})
+  </div>
+</div>
+<div class="card">
+  <div class="control-panel">
+    <div class="control-panel__sections">
+      <button mat-button>About</button>
+      <button mat-button>Projects</button>
+      <button mat-button>Posts</button>
+      <button mat-button>Friends</button>
+      <button mat-button>Community</button>
+    </div>
+    <div class="control-panel__actions">
+      <button mat-button>Edit Profile</button>
+    </div>
+  </div>
+</div>

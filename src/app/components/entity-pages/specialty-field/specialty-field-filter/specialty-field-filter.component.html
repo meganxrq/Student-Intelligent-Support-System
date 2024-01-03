@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="filter.name" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="filter.faculty" (selectionChange)="this.getSpecialtyList(true)" [compareWith]="compareFaculty">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="filter.faculty">
+    <mat-label>Specialty</mat-label>
+    <mat-select [(ngModel)]="filter.specialty" [compareWith]="compareSpecialty">
+      <mat-option *ngFor="let specialty of specialtyList" [value]="specialty">{{specialty.code}} ({{specialty.name}})</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>

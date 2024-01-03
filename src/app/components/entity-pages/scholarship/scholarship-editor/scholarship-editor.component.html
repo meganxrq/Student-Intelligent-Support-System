@@ -1,0 +1,17 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Type" [(ngModel)]="data.entity.type" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="number" matInput placeholder="Amount ($)" [(ngModel)]="data.entity.amount" max="99999">
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

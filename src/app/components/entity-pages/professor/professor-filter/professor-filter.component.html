@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field>
+    <mat-label>Sex</mat-label>
+    <mat-select [(ngModel)]="filter.sex">
+      <mat-option *ngFor="let sex of sexList" [value]="sex">{{sex}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="First name" [(ngModel)]="filter.firstName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last name" [(ngModel)]="filter.lastName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="faculty" (selectionChange)="this.getDepartmentList()">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="faculty">
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="filter.department">
+      <mat-option *ngFor="let department of departmentList" [value]="department">{{department.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Degree</mat-label>
+    <mat-select [(ngModel)]="filter.degree">
+      <mat-option *ngFor="let degree of degreeList" [value]="degree">{{degree.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>

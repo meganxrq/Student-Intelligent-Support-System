@@ -1,0 +1,53 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="data.editorMode.toLowerCase() === 'edit'">Show login and
+    password
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Login: {{data.entity.username}}</button>
+    <button mat-menu-item>Password: {{data.entity.password}}</button>
+  </mat-menu>
+
+  <mat-form-field>
+    <mat-label>Sex</mat-label>
+    <mat-select [(ngModel)]="data.entity.sex">
+      <mat-option *ngFor="let sex of sexList" [value]="sex">{{sex}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="First name" [(ngModel)]="data.entity.firstName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last name" [(ngModel)]="data.entity.lastName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="facultyShortName" (selectionChange)="this.getDepartmentList()">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="facultyShortName">
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="data.entity.department.name">
+      <mat-option *ngFor="let department of departmentList" [value]="department.name">{{department.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Degree</mat-label>
+    <mat-select [(ngModel)]="data.entity.degree.name">
+      <mat-option *ngFor="let degree of degreeList" [value]="degree.name">{{degree.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

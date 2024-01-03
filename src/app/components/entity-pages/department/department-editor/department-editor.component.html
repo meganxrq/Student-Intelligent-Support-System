@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="data.entity.name" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="data.entity.faculty.shortName">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

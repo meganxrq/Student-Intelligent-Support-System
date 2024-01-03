@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Code" [(ngModel)]="data.entity.code" maxlength="15">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="data.entity.name" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="data.entity.faculty.shortName">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Program</mat-label>
+    <mat-select [(ngModel)]="data.entity.program">
+      <mat-option *ngFor="let program of programList" [value]="program">{{program}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Education duration (years)" type="number" [(ngModel)]="data.entity.duration" min="1"
+           max="20">
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

@@ -1,0 +1,71 @@
+<div *ngIf="userService.hasUserBeenLoaded()">
+  <div class="table" *ngIf="entity === 'Faculties'">
+    <app-faculty-table></app-faculty-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Departments'">
+    <app-department-table></app-department-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Education forms'">
+    <app-edu-form-table></app-edu-form-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Education funds'">
+    <app-edu-fund-table></app-edu-fund-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Lessons'">
+    <app-lesson-table></app-lesson-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Lesson types'">
+    <app-lesson-type-table></app-lesson-type-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Professors'">
+    <app-professor-table></app-professor-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Professor degrees'">
+    <app-professor-degree-table></app-professor-degree-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Professor scientific works'">
+    <app-professor-sci-work-table></app-professor-sci-work-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Professor scientific work types'">
+    <app-professor-sci-work-type-table></app-professor-sci-work-type-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Scholarships'">
+    <app-scholarship-table></app-scholarship-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Specialties'">
+    <app-specialty-table></app-specialty-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Specialty fields'">
+    <app-specialty-field-table></app-specialty-field-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Students'">
+    <app-student-table></app-student-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Student groups'">
+    <app-student-group-table></app-student-group-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Student progress'">
+    <app-student-progress-table></app-student-progress-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Student scientific works'">
+    <app-student-sci-work-table></app-student-sci-work-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Student scientific work types'">
+    <app-student-sci-work-type-table></app-student-sci-work-type-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Subjects'">
+    <app-subject-table></app-subject-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Testing types'">
+    <app-testing-type-table></app-testing-type-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Traineeship types'">
+    <app-traineeship-type-table></app-traineeship-type-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Traineeship progress'">
+    <app-traineeship-progress-table></app-traineeship-progress-table>
+  </div>
+  <div class="table" *ngIf="entity === 'Traineeships'">
+    <app-traineeship-table></app-traineeship-table>
+  </div>
+</div>

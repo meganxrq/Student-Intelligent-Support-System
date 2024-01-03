@@ -1,0 +1,86 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field *ngIf="filter.showGroup">
+    <mat-label>Student group</mat-label>
+    <mat-select [(ngModel)]="filter.studentGroup" [compareWith]="compareStudentGroup"
+                (selectionChange)="getAllDataViaGroup(true)">
+      <mat-option *ngFor="let group of studentGroupList" [value]="group">
+        {{group.startYear}}-{{group.specialtyField.specialty.faculty.shortName}}-{{group.number}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__after-group" *ngIf="filter.studentGroup">
+    <mat-form-field>
+      <mat-label>Student</mat-label>
+      <mat-select [(ngModel)]="filter.student" [compareWith]="compareStudent">
+        <mat-option *ngFor="let student of studentList" [value]="student">
+          {{student.firstName}} {{student.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subject</mat-label>
+      <mat-select [(ngModel)]="filter.subject" [compareWith]="compareSubject">
+        <mat-option *ngFor="let subject of subjectList" [value]="subject">{{subject.shortName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="filter.showProfessor">
+      <mat-label>Professor</mat-label>
+      <mat-select [(ngModel)]="filter.professor" [compareWith]="compareProfessor">
+        <mat-option *ngFor="let professor of professorList" [value]="professor">
+          {{professor.firstName}} {{professor.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lesson type</mat-label>
+      <mat-select [(ngModel)]="filter.lessonType" [compareWith]="compareLessonType">
+        <mat-option *ngFor="let lType of lessonTypeList" [value]="lType">{{lType.type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Testing type</mat-label>
+      <mat-select [(ngModel)]="filter.testingType" [compareWith]="compareTestingType">
+        <mat-option *ngFor="let tType of testingTypeList" [value]="tType">{{tType.type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pass status</mat-label>
+      <mat-select [(ngModel)]="filter.passStatus">
+        <mat-option>N/A</mat-option>
+        <mat-option *ngFor="let status of passStatusList" [value]="status">{{status}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>

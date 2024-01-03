@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Education start year" type="number" [(ngModel)]="filter.startYear" min="1999"
+           max="2100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="filter.faculty">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Group №" type="number" [(ngModel)]="filter.number" min="1" max="50">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Program</mat-label>
+    <mat-select [(ngModel)]="filter.program">
+      <mat-option *ngFor="let program of programList" [value]="program">{{program}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Education form</mat-label>
+    <mat-select [(ngModel)]="filter.eduForm">
+      <mat-option *ngFor="let eduForm of eduFormList" [value]="eduForm">{{eduForm.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>

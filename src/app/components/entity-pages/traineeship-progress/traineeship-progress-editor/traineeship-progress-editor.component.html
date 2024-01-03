@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <div class="container__label">{{data.entity.student.firstName}}
+    {{data.entity.student.lastName}}
+    ({{data.entity.student.studentGroup.startYear}}
+    -{{data.entity.student.studentGroup.specialtyField.specialty.faculty.shortName}}
+    -{{data.entity.student.studentGroup.number}})
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Final score" type="number" [(ngModel)]="data.entity.finalScore" min="0" max="32766">
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

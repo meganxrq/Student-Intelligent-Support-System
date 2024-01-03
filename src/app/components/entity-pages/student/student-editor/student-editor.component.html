@@ -1,0 +1,56 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="data.editorMode.toLowerCase() === 'edit'">Show login and
+    password
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Login: {{data.entity.username}}</button>
+    <button mat-menu-item>Password: {{data.entity.password}}</button>
+  </mat-menu>
+
+  <mat-form-field>
+    <mat-label>Sex</mat-label>
+    <mat-select [(ngModel)]="data.entity.sex">
+      <mat-option *ngFor="let sex of sexList" [value]="sex">{{sex}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="First name" [(ngModel)]="data.entity.firstName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last name" [(ngModel)]="data.entity.lastName" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Student group</mat-label>
+    <mat-select [(ngModel)]="data.entity.studentGroup" [compareWith]="compareStudentGroup">
+      <mat-option *ngFor="let group of studentGroupList" [value]="group">
+        {{group.startYear}}-{{group.specialtyField.specialty.faculty.shortName}}-{{group.number}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Education fund</mat-label>
+    <mat-select [(ngModel)]="data.entity.eduFund" [compareWith]="compareEduFund">
+      <mat-option *ngFor="let eduFund of eduFundList" [value]="eduFund">{{eduFund.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Scholarship</mat-label>
+    <mat-select [(ngModel)]="data.entity.scholarship" [compareWith]="compareScholarship">
+      <mat-option *ngFor="let scholarship of scholarshipList" [value]="scholarship">
+        {{scholarship.type}} (${{scholarship.amount}})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div *ngIf="userService.hasUserBeenLoaded()">
+  <mat-tab-group *ngIf="userService.isStudent(); else professorMode">
+    <mat-tab label="My Progress">
+      <app-student-progress-table></app-student-progress-table>
+    </mat-tab>
+    <mat-tab label="My Scientific Works">
+      <app-student-sci-work-table></app-student-sci-work-table>
+    </mat-tab>
+    <mat-tab label="Traineeships">
+      <app-traineeship-progress-table></app-traineeship-progress-table>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-template #professorMode>
+    <mat-tab-group>
+      <mat-tab label="Student Progress">
+        <app-student-progress-table></app-student-progress-table>
+      </mat-tab>
+      <mat-tab label="Student Scientific Works">
+        <app-student-sci-work-table></app-student-sci-work-table>
+      </mat-tab>
+      <mat-tab label="Traineeships">
+        <app-traineeship-progress-table></app-traineeship-progress-table>
+      </mat-tab>
+      <mat-tab label="My Scientific Works">
+        <app-professor-sci-work-table></app-professor-sci-work-table>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-template>
+</div>

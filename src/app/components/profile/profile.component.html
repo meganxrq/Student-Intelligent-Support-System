@@ -1,0 +1,9 @@
+<div *ngIf="userService.hasUserBeenLoaded()">
+  <ng-container *ngIf="userService.isStudent(); else professorMode">
+    <app-student-profile></app-student-profile>
+  </ng-container>
+
+  <ng-template #professorMode>
+    Professor Profile Page...
+  </ng-template>
+</div>

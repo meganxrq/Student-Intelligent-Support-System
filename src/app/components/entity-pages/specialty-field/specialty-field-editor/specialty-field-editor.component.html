@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="container__label">{{data.label}}</div>
+
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="data.entity.name" maxlength="100">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="facultyShortName" (selectionChange)="this.getSpecialtyList(true)">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty.shortName">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="facultyShortName">
+    <mat-label>Specialty</mat-label>
+    <mat-select [(ngModel)]="data.entity.specialty.name">
+      <mat-option *ngFor="let specialty of specialtyList" [value]="specialty.name">{{specialty.code}} ({{specialty.name}})</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Save</button>
+  </div>
+
+</div>

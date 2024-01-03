@@ -1,0 +1,26 @@
+<mat-drawer-container class="container" *ngIf="userService.isSignedIn(); else notSignedIn">
+
+  <mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h3>{{currentEntity}}</h3>
+  </mat-toolbar>
+
+  <mat-drawer #drawer class="container__sidenav" mode="side">
+    <h3>Database entities</h3>
+    <div *ngFor="let entity of entities" class="container__sidenav__option">
+      <button mat-raised-button (click)="openDatabaseTool(entity)">{{entity}}</button>
+    </div>
+
+  </mat-drawer>
+
+  <div class="container__right-content">
+    <app-entity-show-chooser [entity]="currentEntity"></app-entity-show-chooser>
+  </div>
+
+</mat-drawer-container>
+
+<ng-template #notSignedIn>
+  <app-sign-in></app-sign-in>
+</ng-template>

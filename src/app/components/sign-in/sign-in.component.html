@@ -1,0 +1,32 @@
+<mat-card class="sign-in-form">
+
+  <form [formGroup]="formGroup">
+
+    <p class="sign-in-form__text-header">Sign In</p>
+
+    <mat-form-field class="sign-in-form__input">
+      <input type="text" matInput placeholder="Login" formControlName="loginF" maxLength="20">
+      <mat-error>{{getLoginErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="sign-in-form__input">
+      <input type="password" matInput placeholder="Password" formControlName="passwordF" maxLength="20">
+      <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div class="sign-in-form__submit">
+      <button type="submit" mat-raised-button [disabled]="isDisabled()" (click)="submit()">Sign In</button>
+    </div>
+
+  </form>
+
+</mat-card>
+
+<div class="demo">
+  <label class="demo__label">Demo mode:     Sign In as:</label>
+  <mat-radio-group (change)="demoRadioChanged($event)">
+    <mat-radio-button class="demo__radio" value='admin'>Admin</mat-radio-button>
+    <mat-radio-button class="demo__radio" value='professor'>Professor</mat-radio-button>
+    <mat-radio-button class="demo__radio" value='student'>Student</mat-radio-button>
+  </mat-radio-group>
+</div>

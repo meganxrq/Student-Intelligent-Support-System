@@ -1,0 +1,65 @@
+import {Faculty} from './entities/faculty';
+import {Department} from './entities/department';
+import {ProfessorDegree} from './entities/professor-degree';
+import {Specialty} from './entities/specialty';
+import {SpecialtyField} from './entities/specialty-field';
+import {EduForm} from './entities/edu-form';
+import {Professor} from './entities/professor';
+import {Subject} from './entities/subject';
+import {StudentGroup} from './entities/student-group';
+import {Type} from './entities/type';
+import {EduFund} from './entities/edu-fund';
+import {Scholarship} from './entities/scholarship';
+import {Student} from './entities/student';
+import {Lesson} from './entities/lesson';
+import {Traineeship} from './entities/traineeship';
+
+export interface EntityFilter {
+
+  orderByList: string[];
+  orderBy: string;
+  isAscending: boolean;
+  name?: string;
+  type?: string;
+  faculty?: Faculty;
+  shortName?: string;
+  fullName?: string;
+  amount?: string;
+  firstName?: string;
+  lastName?: string;
+  department?: Department;
+  degree?: ProfessorDegree;
+  sex?: string;
+  code?: string;
+  program?: string;
+  duration?: number;
+  specialty?: Specialty;
+  number?: number;
+  specialtyField?: SpecialtyField;
+  eduForm?: EduForm;
+  startYear?: number;
+  professor?: Professor;
+  subject?: Subject;
+  studentGroup?: StudentGroup;
+  lessonType?: Type;
+  testingType?: Type;
+  startDate?: string;
+  endDate?: string;
+  hourCount?: number;
+  eduFund?: EduFund;
+  scholarship?: Scholarship;
+  student?: Student;
+  finalScore?: number;
+  passStatus?: string;
+  currentScore?: number;
+  missCount?: number;
+  professorSciWorkType?: Type;
+  studentSciWorkType?: Type;
+  topic?: '';
+  defenseStatus?: '';
+  defenseDate?: '';
+  traineeshipType?: Type;
+  showGroup?: boolean;
+  showProfessor?: boolean;
+  traineeship?: Traineeship
+}

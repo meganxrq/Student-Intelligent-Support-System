@@ -1,0 +1,102 @@
+<div class="container">
+
+  <div class="container__label">Set up your filter</div>
+
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="faculty" (selectionChange)="this.getDepartmentList(true)" [compareWith]="compareFaculty">
+      <mat-option *ngFor="let faculty of facultyList" [value]="faculty">{{faculty.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="faculty">
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="filter.department" (selectionChange)="getProfessorList()"
+                [compareWith]="compareDepartment">
+      <mat-option *ngFor="let department of departmentList" [value]="department">{{department.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="filter.department">
+    <mat-label>Professor</mat-label>
+    <mat-select [(ngModel)]="filter.professor" [compareWith]="compareProfessor">
+      <mat-option *ngFor="let professor of professorList" [value]="professor">
+        {{professor.firstName}} {{professor.lastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Subject</mat-label>
+    <mat-select [(ngModel)]="filter.subject" [compareWith]="compareSubject">
+      <mat-option *ngFor="let subject of subjectList" [value]="subject">{{subject.shortName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Student group</mat-label>
+    <mat-select [(ngModel)]="filter.studentGroup" [compareWith]="compareStudentGroup">
+      <mat-option *ngFor="let group of studentGroupList" [value]="group">
+        {{group.startYear}}-{{group.specialtyField.specialty.faculty.shortName}}-{{group.number}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Lesson type</mat-label>
+    <mat-select [(ngModel)]="filter.lessonType" [compareWith]="compareLessonType">
+      <mat-option *ngFor="let lType of lessonTypeList" [value]="lType">{{lType.type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Testing type</mat-label>
+    <mat-select [(ngModel)]="filter.testingType" [compareWith]="compareTestingType">
+      <mat-option *ngFor="let tType of testingTypeList" [value]="tType">{{tType.type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Start date</mat-label>
+    <input matInput [(ngModel)]="filter.startDate" [matDatepicker]="startPicker" disabled>
+    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+    <mat-datepicker #startPicker disabled="false"></mat-datepicker>
+    <mat-icon matSuffix (click)="clearStartDate()" *ngIf="filter.startDate">highlight_off</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>End date</mat-label>
+    <input matInput [(ngModel)]="filter.endDate" [matDatepicker]="endPicker" disabled>
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker disabled="false"></mat-datepicker>
+    <mat-icon matSuffix (click)="clearEndDate()" *ngIf="filter.endDate">highlight_off</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Hour count (a study cycle)" type="number" [(ngModel)]="filter.hourCount" min="1"
+           max="255">
+  </mat-form-field>
+
+  <div class="container__order">
+
+    <div class="container__order__select">
+      <mat-form-field>
+        <mat-label>Order by</mat-label>
+        <mat-select [(ngModel)]="filter.orderBy">
+          <mat-option *ngFor="let param of filter.orderByList" [value]="param">
+            {{param}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="container__order__icon">
+      <button mat-icon-button (click)="switchOrderMode()">{{getArrowLabel()}}</button>
+    </div>
+
+  </div>
+
+  <div class="container__save-btn">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="disableSaveBtn()">Apply</button>
+  </div>
+
+</div>
