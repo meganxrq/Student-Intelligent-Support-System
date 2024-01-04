@@ -35,7 +35,7 @@ public class DataBaseFillController {
     private final TestingTypeService testingTypeService;
     private final TraineeshipService traineeshipService;
     private final TraineeshipTypeService traineeshipTypeService;
-    private final Storage storage;
+    private final Storage storage = new Storage();
 
     @GetMapping()
     public void fill() {
