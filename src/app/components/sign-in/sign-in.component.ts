@@ -106,11 +106,11 @@ export class SignInComponent implements OnInit {
         break;
 
       case 'professor':
-        this.formGroup.patchValue({loginF: 'p1829062503', passwordF: '720065194'});
+        this.formGroup.patchValue({loginF: 'p84745151589', passwordF: '439000365'});
         break;
 
       case 'student':
-        this.formGroup.patchValue({loginF: 's917671088', passwordF: '351398117'});
+        this.formGroup.patchValue({loginF: 's804222077', passwordF: '580083160'});
         break;
     }
   }
