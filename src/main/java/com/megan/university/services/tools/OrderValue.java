@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class OrderValue {
 
     /* Key - attribute name coming from Frontend
-    * Value - corresponding column name in the Database */
+     * Value - corresponding column name in the Database */
     public static final HashMap<String, String> orderByParams = new HashMap<>();
 
-    public static void defineOrderByParams() {
+    static {
         orderByParams.put("ID", "id");
         orderByParams.put("Name", "name");
         orderByParams.put("Full name", "fullName");
